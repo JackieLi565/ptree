@@ -13,8 +13,6 @@ func main() {
 	t.SetOutput(os.Stdout)
 
 	e := NewTextEncoder()
-	e.SetFancy()
-	e.SetIndent("   ")
 
 	t.Scan()
 	t.Render(e)

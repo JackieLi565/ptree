@@ -6,8 +6,7 @@ import (
 )
 
 type JSONEncoder struct {
-	fullPath bool
-	root     bool
+	root bool
 }
 
 func NewJSONEncoder() *JSONEncoder {
@@ -21,11 +20,6 @@ func (w *JSONEncoder) Encode(tree Node) string {
 	}
 
 	return string(dat)
-}
-
-func (w *JSONEncoder) SetFullPath() bool {
-	w.fullPath = !w.fullPath
-	return w.fullPath
 }
 
 func (w *JSONEncoder) SetRoot() bool {
