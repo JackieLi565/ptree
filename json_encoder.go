@@ -13,7 +13,7 @@ func NewJSONEncoder() *JSONEncoder {
 	return &JSONEncoder{}
 }
 
-func (w *JSONEncoder) Encode(tree *Node) string {
+func (e *JSONEncoder) Encode(tree *Node) string {
 	dat, err := json.Marshal(tree)
 	if err != nil {
 		log.Fatal(err)
@@ -22,7 +22,6 @@ func (w *JSONEncoder) Encode(tree *Node) string {
 	return string(dat)
 }
 
-func (w *JSONEncoder) SetRoot() bool {
-	w.root = !w.root
-	return w.root
+func (e *JSONEncoder) SetRoot(root bool) {
+	e.root = root
 }

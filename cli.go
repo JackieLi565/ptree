@@ -13,6 +13,9 @@ type CLI struct {
 	encoding   string
 	exclude    []string
 	outputFile string
+	fancy      bool
+	root       bool
+	trailing   bool
 }
 
 func NewCLI() *CLI {
@@ -65,6 +68,9 @@ func (c *CLI) Run() error {
 	// long forms
 	root.Flags().StringSliceVar(&c.exclude, "exclude", make([]string, 0), "Exclude directories or files from project tree")
 	root.Flags().StringVar(&c.outputFile, "output-file", "", "Project tree output file")
+	root.Flags().BoolVar(&c.fancy, "fancy", false, "Formatted fancy output")
+	root.Flags().BoolVar(&c.root, "root", false, "Include root directory in final output")
+	root.Flags().BoolVar(&c.fancy, "trailing", false, "Include trailing slash")
 
 	return root.Execute()
 }
@@ -72,13 +78,28 @@ func (c *CLI) Run() error {
 func (c *CLI) getEncoder() Encoder {
 	switch c.encoding {
 	case "json":
-		return NewJSONEncoder()
+		e := NewJSONEncoder()
+		e.SetRoot(c.root)
+
+		return e
+	case "text":
+		e := NewTextEncoder()
+		e.SetFancy(c.fancy)
+		e.SetRoot(c.root)
+		e.SetTrailing(c.trailing)
+
+		return e
 	}
 
+	c.printWarn("Invalid 'encoding' parameter", "defaulting to a standard text encoding")
 	return NewTextEncoder()
 }
 
 func (c *CLI) printStderr(name string, err error) {
 	fmt.Printf("Error: %s\n%s\n", name, err)
 	os.Exit(1)
+}
+
+func (c *CLI) printWarn(name string, description string) {
+	fmt.Printf("Warning: %s\n%s\n", name, description)
 }

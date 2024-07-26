@@ -47,19 +47,16 @@ func (e *TextEncoder) Encode(tree *Node) string {
 	}
 }
 
-func (e *TextEncoder) SetRoot() bool {
-	e.root = !e.root
-	return e.root
+func (e *TextEncoder) SetRoot(root bool) {
+	e.root = root
 }
 
-func (e *TextEncoder) SetFancy() bool {
-	e.fancy = !e.fancy
-	return e.fancy
+func (e *TextEncoder) SetFancy(fancy bool) {
+	e.fancy = fancy
 }
 
-func (e *TextEncoder) SetTrailing() bool {
-	e.trailing = !e.trailing
-	return e.trailing
+func (e *TextEncoder) SetTrailing(trailing bool) {
+	e.trailing = trailing
 }
 
 func (e *TextEncoder) fancyEncode(node *Node, sb *strings.Builder) {
