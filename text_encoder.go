@@ -24,7 +24,7 @@ const (
 
 	ASCIITail   = "`-- "
 	ASCIIBranch = "|-- "
-	ASCIIBar    = "|"
+	ASCIIBar    = "|    "
 )
 
 func NewTextEncoder() *TextEncoder {

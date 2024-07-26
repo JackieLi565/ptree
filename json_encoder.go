@@ -13,7 +13,7 @@ func NewJSONEncoder() *JSONEncoder {
 	return &JSONEncoder{}
 }
 
-func (w *JSONEncoder) Encode(tree Node) string {
+func (w *JSONEncoder) Encode(tree *Node) string {
 	dat, err := json.Marshal(tree)
 	if err != nil {
 		log.Fatal(err)
