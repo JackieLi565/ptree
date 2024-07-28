@@ -70,7 +70,7 @@ func (c *CLI) Run() error {
 	root.Flags().StringVar(&c.outputFile, "output-file", "", "Project tree output file")
 	root.Flags().BoolVar(&c.fancy, "fancy", false, "Formatted fancy output")
 	root.Flags().BoolVar(&c.root, "root", false, "Include root directory in final output")
-	root.Flags().BoolVar(&c.fancy, "trailing", false, "Include trailing slash")
+	root.Flags().BoolVar(&c.trailing, "trailing", false, "Include trailing slash")
 
 	return root.Execute()
 }
